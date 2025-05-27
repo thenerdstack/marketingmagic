@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Magic</title>
+
+  <!-- Load GSAP first, before other scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <!-- Then load other scripts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f8f8f8;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IGlkPSJwYXR0ZXJuLWJhY2tncm91bmQiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmOGY4ZjgiPjwvcmVjdD4gPHJlY3QgaWQ9InN0cmlwZTEiIHdpZHRoPSIxIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZjBmMGYwIj48L3JlY3Q+PC9wYXR0ZXJuPjwvZGVmcz4gPHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PC9yZWN0Pjwvc3ZnPg==');
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .heading-text {
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .yellow-highlight {
+      background-color: #F2C94C;
+      transform: rotate(-2deg);
+      display: inline-block;
+      padding: 5px 30px;
+    }
+
+    .hero-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .magic-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    /* Panel styles for pinned sections */
+    .panel {
+      height: 300vh;
+      width: 100vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Handle overflow for content within panels */
+    .panel-content {
+      height: 300%;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+
+    .heading-text {
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      line-height: 0.9;
+      font-stretch: condensed;
+    }
+
+    /* Custom font for the Marketing Magic text */
+    .font-script {
+      font-family: 'Brush Script MT', 'Segoe Script', cursive;
+      font-weight: bold;
+      letter-spacing: -0.02em;
+    }
+
+    /* Navigation dots */
+    .section-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: none;
+      /* Hide on mobile by default */
+    }
+
+    @media (min-width: 768px) {
+      .section-menu {
+        display: block;
+        /* Show on larger screens */
+      }
+    }
+
+    .section-menu li {
+      display: block;
+      width: 14px;
+      height: 14px;
+      margin: 8px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    .section-menu li::after {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.5);
+      display: block;
+      position: absolute;
+      right: 3px;
+      bottom: 5px;
+    }
+
+    .section-menu li:last-child::after {
+      display: none;
+    }
+
+
+    /* Black half-circle styling */
+    .black-circle-container {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Content inside the black circle */
+    .black-circle-content {
+      position: relative;
+      top: 15%;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Glassmorphism Nav */
+    .glassmorphism-nav {
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Menu button styling */
+    .menu-btn {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+    }
+
+    /* Rainbow gradient top border */
+    .rainbow-border {
+      height: 3px;
+      background: linear-gradient(90deg, #8A2387, #E94057, #F27121, #FFAA00, #BABD42, #6FCF97, #66D9E8, #8A2387);
+      background-size: 800% 100%;
+      animation: rainbowAnimation 10s linear infinite;
+    }
+
+    @keyframes rainbowAnimation {
+      0% {
+        background-position: 0% 50%
+      }
+
+      100% {
+        background-position: 100% 50%
+      }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 49;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Enroll Now button styles */
+    .enroll-button {
+      border: 2px solid white;
+      color: white;
+      padding: 0.6rem 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .enroll-button:hover {
+      background: white;
+      color: black;
+    }
+
+    .enroll-button svg {
+      margin-left: 0.5rem;
+    }
+
+
+
+
+
+    /* REVISED Styles for the combined panel */
+    /* .fixed-circle {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    z-index: 1;
+} */
+
+    .black-circle-content {
+      position: relative;
+      top: 15%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .content-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding-bottom: 5rem;
+      z-index: 5;
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+
+
+    /* Black curved bottom styles - NEW APPROACH */
+    .black-curved-bottom {
+      border-bottom-left-radius: 50% 20%;
+      border-bottom-right-radius: 50% 20%;
+      height: 85%;
+    }
+
+    /* Fixed content positioning */
+    #combined-circle-panel .fixed-content {
+      position: absolute;
+      top: 15%;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 2;
+      height: 5000px;
+    }
+
+
+    /* Hero panel spacing fix */
+    #hero-panel .panel-content {
+      padding-top: 70px;
+      /* Add padding to create space below navbar */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .black-curved-bottom {
+        height: 80%;
+        /* Less height on mobile */
+        border-bottom-left-radius: 50% 15%;
+        border-bottom-right-radius: 50% 15%;
+      }
+
+      #combined-circle-panel .fixed-content {
+        top: 10%;
+      }
+    }
+
+
+    /* Add this to your existing <style> tag */
+    .black-circle-panel .panel-content {
+      position: relative;
+      z-index: 5;
+      /* Higher than the expanding circle */
+    }
+
+    .black-circle-panel .black-circle-content {
+      position: relative;
+      z-index: 10;
+      /* Higher than the panel-content */
+    }
+
+
+    /* .black-circle-container {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    z-index: 1;
+} */
+
+
+
+
+    /* Create an expanding black background element */
+    .expanding-black-bg {
+      position: absolute;
+      bottom: -100%;
+      left: -10%;
+      width: 120%;
+      height: 0;
+      background-color: black;
+      border-top-left-radius: 50% 50%;
+      border-top-right-radius: 50% 50%;
+      transition: height 0.8s ease-out, bottom 0.8s ease-out;
+      z-index: 0;
+      /* Below the original circle but above other content */
+    }
+
+    /* Class to be added via JavaScript when scrolling */
+    .expanding-black-bg.expanded {
+      height: 200%;
+      bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Ensure the black-circle-container has the proper z-index */
+    #combined-circle-panel .black-circle-container {
+      z-index: 1;
+      position: relative;
+      /* Ensure it's a positioning context */
+    }
+
+    /* Ensure content-overlay has higher z-index than expanding background */
+    #combined-circle-panel .content-overlay {
+      z-index: 3;
+    }
+
+
+
+    /* Gray circle panel styling */
+    #gray-circle-panel .gray-circle-container {
+      position: relative;
+      width: 200%;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #777777;
+      /* Medium gray color - adjust as needed */
+      border-top-left-radius: 50% 100%;
+      border-top-right-radius: 50% 100%;
+      z-index: 1;
+    }
+
+    /* Create an expanding gray background element */
+    .expanding-gray-bg {
+      position: absolute;
+      bottom: -100%;
+      left: -10%;
+      width: 120%;
+      height: 0;
+      background-color: #777777;
+      /* Match the gray color */
+      border-top-left-radius: 50% 50%;
+      border-top-right-radius: 50% 50%;
+      transition: height 0.8s ease-out, bottom 0.8s ease-out;
+      z-index: 0;
+    }
+
+    /* Class to be added via JavaScript when scrolling */
+    .expanding-gray-bg.expanded {
+      height: 200%;
+      bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Ensure content-overlay has higher z-index than expanding background */
+    #gray-circle-panel .content-overlay {
+      z-index: 3;
+    }
+
+
+
+
+    #scroll-content,
+    #gray-scroll-content {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+
+
+
+
+
+
+
+
+    /* Grid layout styling */
+    .grid {
+      display: grid;
+      width: 100%;
+      min-height: 70vh;
+    }
+
+    .col-span-1 {
+      grid-column: span 1 / span 1;
+    }
+
+    .col-span-2 {
+      grid-column: span 2 / span 2;
+    }
+
+    .row-span-1 {
+      grid-row: span 1 / span 1;
+    }
+
+    /* Text styling */
+    .text-yellow-400 {
+      color: #F2C94C;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .col-span-1,
+      .col-span-2 {
+        grid-column: span 1 / span 1;
+      }
+
+      .text-left,
+      .text-right {
+        text-align: center;
+      }
+    }
+
+    /* Arrow animation */
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(15px);
+      }
+    }
+
+    #gray-scroll-content img {
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+
+
+
+
+
+
+
+
+
+
+.content-container {
+  display: flex;
+}
+.content-container > * {
+  width: 50%;
+}
+
+.right-content {
+  padding-right: 15px;
+}
+
+.left-content {
+  height: 100vh;
+  position: relative;
+}
+
+.left-content > * {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 800px) {
+  .left-content {
+    display: none;
+  }
+  .right-content {
+    padding-left: 15px;
+  }
+}
+
+.header-section {
+  text-align: center;
+  padding: 1rem 6rem;
+}
+
+
+
+
+
+/* Feature Panel with Pinned Left Column */
+#features-panel, .features-panel {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    z-index: 9; /* Increased z-index value to ensure visibility */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Feature panel styling to match the image */
+.feature-section {
+  padding: 2rem 0;
+}
+
+.feature-container {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.path-line {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 0;
+  width: 3px;
+  background-color: #666;
+  height: calc(100% - 20px);
+  border-radius: 1.5px;
+}
+
+.feature-card {
+  position: relative;
+  background-color: #F2C94C; /* Yellow base color */
+  background-image: url('grain-yellow.png'); /* Add the grain texture */
+  background-blend-mode: multiply;
+  color: black;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 500px;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 6px 15px -5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center; /* Center the text inside the cards */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.feature-card p {
+  margin: 0;
+  font-weight: 700;
+  color: #222;
+  text-align: center; /* Ensure text is centered */
+}
+
+
+
+
+
+
+
+
+ /* Responsive styles for feature cards */
+ .feature-card {
+    background-color: #F2C94C;
+    color: black;
+    margin-bottom: 2.5rem;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 500px;
+    box-shadow: 0 6px 15px -5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Responsive styles for arrows and x-mark */
+  @media (max-width: 1024px) {
+    .arrow-image {
+      width: 12rem !important;
+      height: 12rem !important;
+    }
+    
+    .x-mark-image {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .feature-card {
+      margin-left: 0.5rem;
+      max-width: 90%;
+    }
+    
+    .arrow-image {
+      width: 8rem !important;
+      height: 8rem !important;
+    }
+    
+    .path-line {
+      left: -5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .feature-card {
+      margin-left: 0;
+      max-width: 100%;
+      padding: 1rem;
+    }
+    
+    .arrow-image {
+      width: 6rem !important;
+      height: 6rem !important;
+      bottom: -60px !important;
+    }
+    
+    .x-mark-image {
+      width: 2.5rem !important;
+      height: 2.5rem !important;
+    }
+    
+    .path-line {
+      display: none; /* Hide the path line on very small screens */
+    }
+  }
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+  /* Add these styles to your existing <style> tag */
+
+/* Base responsive styling for features panel */
+.features-panel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 150vh;
+  background-color: rgb(0, 0, 0);
+  padding: 5rem 2rem;
+  z-index: 9;
+}
+
+/* Responsive content container */
+.content-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Left content (pinned content) */
+.left-content {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  padding: 1rem;
+}
+
+/* Right content (scrolling content) */
+.right-content {
+  width: 50%;
+  padding: 1rem;
+}
+
+/* Feature card responsiveness */
+.feature-card {
+  width: 100%;
+  max-width: 500px;
+  margin-left: 1.5rem;
+  padding: 2rem 1.5rem;
+  min-height: 200px;
+}
+
+/* Path line adjustments */
+.path-line {
+  left: 0;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 1200px) {
+  .feature-card {
+    max-width: 450px;
+    min-height: 180px;
+    padding: 1.5rem;
+  }
+  
+  .arrow-image {
+    width: 14rem !important;
+    height: 14rem !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .left-content, 
+  .right-content {
+    width: 100%;
+  }
+  
+  .left-content {
+    height: auto;
+    min-height: 300px;
+    margin-bottom: 3rem;
+  }
+  
+  .left-content > * {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .feature-card {
+    margin-left: 1rem;
+    max-width: 90%;
+  }
+  
+  .arrow-image {
+    width: 10rem !important;
+    height: 10rem !important;
+    bottom: -70px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .features-panel {
+    padding: 3rem 1rem;
+  }
+  
+  .feature-card {
+    min-height: 150px;
+    margin-left: 0.5rem;
+    padding: 1.25rem;
+  }
+  
+  .arrow-image {
+    width: 8rem !important;
+    height: 8rem !important;
+    bottom: -60px !important;
+  }
+  
+  .x-mark-image {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .features-panel {
+    padding: 2rem 0.75rem;
+  }
+  
+  .feature-card {
+    min-height: 120px;
+    margin-left: 0;
+    margin-bottom: 4rem;
+    padding: 1rem;
+  }
+  
+  .path-line {
+    left: -8px;
+    width: 2px;
+  }
+  
+  .arrow-image {
+    width: 6rem !important;
+    height: 6rem !important;
+    bottom: -50px !important;
+  }
+  
+  .x-mark-image {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Improved left content styling for features panel */
+.left-content-features {
+  width: 100%;
+  padding: 2rem;
+  background-color: #000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make the heading text stand out more */
+.left-content-features h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.05em;
+}
+
+/* Enhanced CTA button styling */
+.left-content-features .cta-button {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.left-content-features .cta-button:hover {
+  background-color: #F2C94C;
+  border-color: #F2C94C;
+  color: black;
+  transform: translateY(-3px);
+}
+
+/* Gold accent line */
+.gold-accent {
+  height: 3px;
+  width: 80px;
+  background-color: #F2C94C;
+  margin: 1.5rem auto;
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 992px) {
+  /* Change content container to make it stack vertically on mobile */
+  .content-container {
+    flex-direction: column;
+  }
+  
+  /* Make both columns full width on mobile */
+  .content-container > * {
+    width: 100%;
+  }
+  
+  /* Fix left content display on mobile */
+  .left-content {
+    height: auto;
+    min-height: auto;
+    position: static;
+    padding: 3rem 1rem;
+    margin-bottom: 0;
+  }
+  
+  /* Ensure all content is visible on mobile */
+  .left-content > * {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Adjust feature card spacing on mobile */
+  .feature-card {
+    margin-bottom: 4rem;
+  }
+  
+  /* Style consistency for mobile layout */
+  .feature-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Testimonial slider styling - UPDATED */
+.testimonial-slider-container {
+    /* margin: 0 -10%; */
+    width: 120%;
+    overflow: visible;
+    position: relative;
+  }
+  
+  .testimonial-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .testimonial-slide {
+    flex: 0 0 auto;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+    margin-top: 60px; /* Add space for avatar */
+  }
+  
+  @media (min-width: 768px) {
+    .testimonial-slide {
+      width: 600px; /* Exactly 3 slides visible on desktop */
+    }
+  }
+  
+  .testimonial-card {
+    border-radius: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem !important;
+    padding-top: 4rem !important;
+    background-color: #222 !important;
+    position: relative;
+  }
+  
+  /* Name styling */
+  .testimonial-card h3 {
+    font-size: 2.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 900;
+  }
+  
+  /* Title badge */
+  .testimonial-card .bg-yellow-400 {
+    display: inline-block;
+    transform: translateY(-5px);
+  }
+  
+  /* Rainbow progress bar for dragging */
+  .rainbow-slider {
+    cursor: grab;
+    transition: left 0.3s ease;
+  }
+  
+  .rainbow-slider:active {
+    cursor: grabbing;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .testimonial-slider-container {
+      margin: 0;
+      width: 100%;
+    }
+    
+    .testimonial-card h3 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Make sure the avatar is properly circular */
+  .avatar-circle {
+    position: relative;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Position decorative elements */
+  .avatar-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem !important;
+    z-index: 2;
+  }
+  
+  /* Improve text formatting */
+  .testimonial-card p {
+    line-height: 1.7;
+    font-size: 1.125rem;
+    margin-top: 0.5rem;
+  }
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- Rainbow gradient border at the top -->
+  <div class="rainbow-border"></div>
+
+  <!-- Glassmorphism Nav - Restructured for 3 column layout -->
+  <header class="glassmorphism-nav fixed w-full z-50">
+    <div class="container mx-auto flex items-center justify-between">
+      <!-- Left: Logo -->
+      <div class="w-32 md:w-40 flex-shrink-0">
+        <img src="Marketing Magic Logos-01 2.png" alt="Marketing Magic" class="h-14">
+      </div>
+
+      <!-- Center: Menu Button -->
+      <button class="menu-btn" id="menu-btn">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                MENU
+            </button>
+
+      <!-- Right: Enroll Now Button -->
+      <a href="#" class="enroll-button">
+        ENROLL NOW
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile menu (initially hidden) -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero-panel">Home</a>
+    <a href="#marketing-changes-panel">About</a>
+    <a href="#slide-up-panel">Features</a>
+    <a href="#black-circle-panel">Contact</a>
+
+    <!-- Close button -->
+    <button class="absolute top-6 right-6 text-white" id="close-menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+  </div>
+
+
+
+  <!-- Hero Panel -->
+  <section id="hero-panel" class="panel">
+    <div class="panel-content relative bg-black w-full h-screen overflow-hidden">
+      <!-- Yellow diagonal background on right side -->
+      <div class="absolute top-0 right-0 h-full w-1/3 z-0 hidden md:block"></div>
+
+      <!-- Main content container -->
+      <div class="relative h-full w-full flex items-center z-10">
+        <div class="container mx-auto px-4 md:px-8">
+          <!-- Responsive layout that stacks on mobile -->
+          <div class="flex flex-col md:flex-row items-center">
+            <!-- Left text content -->
+            <div class="w-full md:w-1/2 text-white text-center md:text-center mb-8 md:mb-0">
+              <p class="text-white text-lg md:text-xl mb-4">CONJURE MORE RESULTS, SPEND LESS</p>
+
+              <h1 class="hero-heading text-white text-5xl sm:text-6xl md:text-7xl leading-none mb-4 text-center">
+                MAKE YOUR<br>
+                                MARKETING<br>
+                                BUDGET WORK
+              </h1>
+
+              <h2
+                class="magic-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-yellow-400 leading-none mb-8 md:mb-12">
+                <span class="text-yellow-400 mr-3">✦</span>LIKE MAGIC<span class="text-yellow-400 ml-3">✦</span>
+              </h2>
+
+              <div>
+                <a href="#"
+                  class="border-2 border-white text-white px-8 py-3 md:px-12 md:py-4 inline-flex items-center font-semibold transition-colors hover:bg-white hover:text-black">
+                  ENROLL NOW
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right image - responsive positioning -->
+            <div
+              class="w-full md:w-1/2 md:absolute md:right-0 md:top-1/2 md:transform md:-translate-y-1/2 px-4 md:px-0">
+              <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/Group-21.png" alt="Magician rabbit with playing cards" class="w-full h-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Changes Panel -->
+  <section id="marketing-changes-panel" class="panel">
+    <div class="panel-content relative w-full h-screen overflow-hidden pt-20 md:pt-16">
+      <!-- Background Video -->
+      <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute w-full h-full object-cover">
+          <source
+            src="http://jacoba27.sg-host.com/wp-content/uploads/2025/04/424fda43e653b0f183c5b8ffffe8c290a0306ac4.mp4"
+            type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <!-- Optional overlay to ensure text readability -->
+        <div class="absolute inset-0 bg-white bg-opacity-70"></div>
+      </div>
+
+      <!-- Top Right Image - Magic Hat with Rabbit -->
+      <div class="absolute top-0 right-0 w-24 sm:w-32 md:w-[19rem] z-10">
+        <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/MarketingMagic_Icons-02-1.png" alt="Magic Hat with Rabbit" class="w-full">
+      </div>
+
+      <!-- Bottom Left Image - Flying Money -->
+      <div class="absolute bottom-0 left-0 w-1/3 max-w-md z-10 hidden sm:block">
+        <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/MarketingMagic_Icons-01-1.png" alt="Flying Money" class="w-full">
+      </div>
+
+      <!-- Bottom Right Image - Crystal Ball -->
+      <div class="absolute bottom-0 right-0 w-1/4 max-w-sm z-10 hidden sm:block">
+        <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/MarketingMagic_Icons-03-1.png" alt="Crystal Ball" class="w-full">
+      </div>
+
+      <!-- Main Content -->
+      <div class="container mx-auto px-4 relative z-20 h-full flex flex-col justify-center">
+        <div class="max-w-4xl mx-auto text-center mb-8">
+          <h2 class="heading-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-6">
+            THE WORLD OF MARKETING CHANGES
+          </h2>
+          <div class="yellow-highlight mb-8 md:mb-16">
+            <h3 class="heading-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black">
+              EVERY. SINGLE. DAY.
+            </h3>
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed px-4">
+            Are you a small business owner tired of overpaying for underperforming agencies and
+            fearing your business might fail without a solid marketing plan? Maybe you're a new
+            entrepreneur struggling to get noticed or the one 'running the show' in marketing with
+            no clear direction. You're not alone! As a former agency owner, I've seen how often
+            agencies fail to deliver, leaving clients frustrated and overwhelmed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide Up Panel with Yellow Background -->
+  <section id="slide-up-panel" class="panel">
+    <div class="panel-content relative w-full h-screen bg-yellow-400">
+      <!-- Video background with yellow overlay -->
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute w-full h-full object-cover opacity-40">
+          <source
+            src="http://jacoba27.sg-host.com/wp-content/uploads/2025/04/424fda43e653b0f183c5b8ffffe8c290a0306ac4.mp4"
+            type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <!-- Yellow overlay to match the textured yellow in the image -->
+        <div class="absolute inset-0 bg-yellow-400 bg-opacity-90"></div>
+      </div>
+
+      <!-- Content container -->
+      <div class="relative h-full w-full flex flex-col items-center justify-center z-10">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+          <!-- Updated heading with taller font and tighter letter spacing -->
+          <h2
+            class="heading-text text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tighter mb-2"
+            style="letter-spacing: -0.05em; font-stretch: condensed;">
+            HOW DO YOU STAY
+          </h2>
+          <h2
+            class="heading-text text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tighter mb-2"
+            style="letter-spacing: -0.05em; font-stretch: condensed;">
+            ON TOP OF IT ALL?
+          </h2>
+
+          <!-- Updated underline with swoosh and arrow -->
+          <div class="relative w-full sm:w-3/4 mx-auto mt-8">
+            <!-- Underline image with the arrow down positioned on it -->
+            <div class="relative">
+              <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/Layer_1.png" alt="Stylized underline" class="w-full">
+
+              <!-- BIGGER Down arrow positioned directly on the underline image -->
+              <div
+                class="w-40 sm:w-60 md:w-80 h-16 sm:h-24 md:h-32 arrow-down absolute left-1/2 transform -translate-x-1/2 -bottom-10"
+                id="next-section-arrow">
+                <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/Layer_1-1.png" alt="Arrow down" class="w-full">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Modify your Combined Black Circle Panel section -->
+  <section id="combined-circle-panel" class="panel black-circle-panel" style="height: 1000vh;">
+    <div class="panel-content relative w-full h-screen overflow-hidden flex items-center justify-center">
+      <!-- Add the expanding background element -->
+      <div class="expanding-black-bg absolute inset-0 w-full h-full" id="expanding-black-bg">
+        <img src="Subtract.png" alt="Union shape" class="w-full h-full">
+      </div>
+
+
+      <div class="black-circle-container" style="transform: translateX(-50%);">
+        <div class="absolute inset-0 w-full h-full">
+          <img src="Union.png" alt="Union shape" class="w-full h-full">
+        </div>
+        <!-- Rest of your content remains the same -->
+        <div class="fixed-content flex items-center justify-center"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;">
+          <img
+                    src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/Frame-4.png"
+                    alt="Marketing Magic - Your Backstage Pass to Agency Secrets"
+                    class="w-4/5 md:w-3/4 lg:w-2/3 max-w-[400px] h-auto"
+                >
+        </div>
+
+        <div class="content-overlay w-full px-4 md:px-8" id="scroll-content"
+          style="position: absolute; bottom: 0; left: 0; z-index: 3;">
+          <!-- Content remains the same -->
+          <div class="container mx-auto text-center pt-16">
+            <div class="max-w-4xl mx-auto p-6 rounded-lg mb-6">
+              <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed">
+                Marketing Magic provides you with a powerful framework to build an effective marketing strategy,
+                sell your product or service, boost your brand, and increase your revenue. Discover actionable
+                fundamentals and steps you can implement today to elevate your marketing from day one.
+              </p>
+            </div>
+
+            <div class="mb-8">
+              <a href="#"
+                class="bg-yellow-400 text-black px-6 py-3 inline-flex items-center text-base font-bold transition-all hover:bg-yellow-500 transform hover:scale-105 rounded-sm">
+                START YOUR JOURNEY
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- Gray Circle Panel -->
+  <section id="gray-circle-panel" class="panel gray-circle-panel">
+    <div class="panel-content relative w-full h-screen overflow-hidden flex items-center justify-center">
+      <!-- Add the expanding gray background element -->
+      <div class="expanding-gray-bg" id="expanding-gray-bg"></div>
+
+      <div class="gray-circle-container" style="transform: translateX(-50%);">
+        <!-- Fixed content in the gray circle -->
+        <div class="fixed-content flex items-center justify-center"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;">
+          <img
+                    src="Rabbit2 1.png"
+                    alt="Marketing Magic - Additional Features"
+                    class="w-4/5 md:w-3/4 lg:w-2/3 max-w-[800px] h-auto"
+                >
+        </div>
+        <!-- Modify the gray-scroll-content section to improve the positioning -->
+        <div class="content-overlay w-full px-4 md:px-8" id="gray-scroll-content"
+          style="position: absolute; bottom: 0; left: 0; z-index: 3; height: 100%; display: flex; align-items: center;">
+          <div class="container mx-auto text-center w-full">
+            <!-- 3x3 Grid Layout with improved positioning -->
+            <div class="grid grid-cols-3 grid-rows-3 gap-4 max-w-7xl mx-auto h-full">
+
+              <!-- Top Statement (Top-Left) - Spans 2 columns -->
+              <div class="col-span-2 row-span-1 text-left self-start mt-16">
+                <p class="text-white text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+                  I HELP <span class="text-yellow-400">SMALL BUSINESS OWNERS, FIRST TIME ENTREPRENEURS</span><br>
+                                AND <span class="text-yellow-400">MARKETING DIRECTORS</span> FEEL EMPOWERED AND<br>
+                                KNOWLEDGEABLE TO DIRECT AND EXECUTE THEIR MARKETING<br>
+                                STRATEGY AND <span class="text-yellow-400">SEE REAL TIME RESULTS.</span>
+                </p>
+              </div>
+
+              <!-- Empty cell (Top-Right) -->
+              <div class="col-span-1 row-span-1"></div>
+
+              <!-- Middle Row - Arrow Image (Center) -->
+              <div class="col-span-1 row-span-1"></div> <!-- Left empty -->
+              <div class="col-span-1 row-span-1 flex items-center justify-center">
+                <!-- Yellow arrow pointing down -->
+                <div class="w-40 md:w-60 mx-auto">
+                  <img src="Group 5.png" alt="Yellow arrow" class="w-full">
+                </div>
+              </div>
+              <div class="col-span-1 row-span-1"></div> <!-- Right empty -->
+
+              <!-- Bottom Statement (Bottom-Right) - Spans 2 columns -->
+              <div class="col-span-1 row-span-1"></div> <!-- Left empty -->
+              <div class="col-span-2 row-span-1 text-right self-end mb-16">
+                <p class="text-white text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+                  AT THE END OF THIS COURSE <span class="text-yellow-400">MY STUDENTS WILL FEEL CONFIDENT,<br>
+                                EQUIPPED AND EMPOWERED TO TAKE BACK THEIR MARKETING</span> AND<br>
+                                BUILD, EXECUTE, OR DIRECT THEIR OWN STRATEGY.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <section id="features-panel" class="features-panel relative w-full py-20 bg-black font-montserrat text-white">    <div class="content-container">
+        <div class="left-content">
+            <blockquote id="text1" class="textToShow w-full" style="text-align: center;">
+                
+                <p class="text-brand-gold text-sm md:text-base font-thin mb-3 text-yellow-400">WHAT'S INCLUDED?</p>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-8">
+                  YOUR PATH TO <span class="text-yellow-400">MORE</span> CUSTOMERS,
+                  <span class="text-yellow-400">MORE</span> SALES, <span class="text-yellow-400">MORE</span> SUCCESS.
+                </h1>
+                <a href="#" class="enroll-button">
+                  PREVIEW THE MAGIC
+                  <img src="22 2.png" alt="Right arrow" class="ml-2 w-4 h-4">
+                </a>
+                <div class="gold-accent"></div>
+            </blockquote>
+        </div>
+    
+        <div class="right-content">
+            <p class="contentMarker" data-marker-content="text1">
+                <div class="feature-section">
+                    <div class="feature-container">
+                      <div class="feature-right">
+                        <div class="path-line"></div>
+                  
+                        <!-- First Feature Card -->
+                        <div class="feature-card" style="height: auto; min-height: 250px; position: relative; padding: 1.5rem;">
+                          <p class="font-bold">Receive exclusive insider agency secrets, a proven step-by-step framework, and tailored solutions for small businesses.</p>
+                  
+                          <!-- First arrow positioned to extend beyond the panel -->
+                          <img src="22 2.png" alt="Gray arrow"
+                            style="position: absolute; bottom: -95px; right: 10px; width: 16rem; height: 16rem; z-index: 50;"
+                            class="transform rotate-45 arrow-image">
+                        </div>
+                  
+                        <!-- Second Feature Card -->
+                        <div class="feature-card" style="height: auto; min-height: 250px; position: relative; margin-top: 2.5rem; padding: 1.5rem;">
+                          <p class="font-bold">Unlike generic courses, you will receive actionable steps from day one, a comprehensive approach to all aspects of marketing, engaging content, and expert guidance.</p>
+                  
+                          <!-- X mark on left side -->
+                          <div style="position: absolute; top: 0; left: 0; transform: translate(-30%, -30%); z-index: 40;">
+                            <img src="Brush_Scribble_Elements-3.png" alt="X mark" style="width: 4rem; height: 4rem;" class="x-mark-image">
+                          </div>
+                  
+                          <!-- Second arrow positioned to extend beyond -->
+                          <img src="22 3.png" alt="Gray arrow"
+                            style="position: absolute; bottom: -95px; left: 10px; width: 16rem; height: 16rem; z-index: 50;"
+                            class="transform -rotate-135 arrow-image">
+                        </div>
+                  
+                        <!-- Third Feature Card -->
+                        <div class="feature-card" style="height: auto; min-height: 250px; position: relative; margin-top: 2.5rem; padding: 1.5rem;">
+                          <p class="font-bold">With community support and a focus on immediate implementation, this program ensures tangible results for your business.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+  
+
+
+
+
+
+<!-- New section - Testimonials -->
+<section id="non-pinned-panel" class="relative w-full py-20 bg-white" style="z-index: 9; position: relative; height: 150vh;">
+    <div class="container mx-auto px-4 md:px-8">
+      <h2 class="heading-text text-3xl sm:text-4xl md:text-5xl text-center mb-12">WHAT OUR STUDENTS SAY</h2>
+      
+      <!-- Testimonial Slider Container -->
+      <div class="testimonial-slider-container relative w-full overflow-visible">
+        <!-- Testimonial Slider -->
+        <div class="testimonial-slider flex" id="testimonialSlider">
+          
+          <!-- Testimonial 1 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/200/200" alt="Hailey Watson" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative star elements -->
+                <img src="star-yellow.png" alt="" class="absolute -top-4 -left-4 w-10 h-10">
+                <img src="star-yellow.png" alt="" class="absolute -bottom-2 -right-8 w-16 h-16">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">HAILEY WATSON</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">ENTREPRENEUR</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "Jake launched our small business in such big ways. He answered all of our endless questions and gave us step by step instructions on how to achieve our goals. Finding clients, improving our skills, and networking is so easy though him. Really lucky to have him our court!!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/201/201" alt="Blake Weekley" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative lightning element -->
+                <img src="lightning-yellow.png" alt="" class="absolute -bottom-2 -right-8 w-14 h-14">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">BLAKE WEEKLEY</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">SMALL BUSINESS OWNER</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "Jake's marketing course exceeded my expectations! His approach and clear explanations helped my team kick start our business! Thanks to Jake, I've gained valuable skills that have already made a significant impact on my marketing strategies. Highly recommend this course to anyone looking to level up their marketing game!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Testimonial 3 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/202/202" alt="Anna Rich" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative flower element -->
+                <img src="flower-yellow.png" alt="" class="absolute -top-4 -right-4 w-14 h-14">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">ANNA RICH</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">SMALL BUSINESS OWNER</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "As owners of a local glazed nut company, we found social and digital marketing challenging despite our marketing educational backgrounds. Jacob created this marketing course, which provided the exact information we needed to grow our marketing efforts and business. This was the most beneficial marketing lesson - comprehensive yet refreshingly concise. Highly recommend!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Testimonial 4 (NEW) -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/203/203" alt="Michael Torres" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative element -->
+                <img src="star-yellow.png" alt="" class="absolute -top-4 -right-4 w-12 h-12">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">MICHAEL TORRES</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">MARKETING DIRECTOR</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "Even as a marketing director with years of experience, I found tremendous value in Jake's course. His fresh perspectives and practical techniques have given me new tools to optimize our campaigns. The course's systematic approach to marketing has made it easier for my team to implement changes and track results. Worth every penny!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Testimonial 5 (NEW) -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/204/204" alt="Sarah Johnson" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative element -->
+                <img src="lightning-yellow.png" alt="" class="absolute -bottom-2 -left-8 w-14 h-14">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">SARAH JOHNSON</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">STARTUP FOUNDER</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "As a first-time startup founder with a limited budget, I was overwhelmed by marketing decisions. Jake's course provided the clarity I needed, offering straightforward strategies without the agency price tag. Within weeks of implementing his techniques, we saw a 40% increase in qualified leads. This course is a game-changer for budget-conscious entrepreneurs!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Testimonial 6 (NEW) -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card bg-black text-white p-8 flex flex-col items-center pt-16">
+              <!-- Avatar with decorative elements positioned half above card -->
+              <div class="avatar-container relative mb-6" style="position: absolute; top: -60px;">
+                <div class="avatar-circle overflow-hidden rounded-full border-4 border-yellow-400">
+                  <img src="https://placekitten.com/205/205" alt="David Chen" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative element -->
+                <img src="flower-yellow.png" alt="" class="absolute -top-4 -left-4 w-14 h-14">
+              </div>
+              
+              <!-- Name and title -->
+              <h3 class="text-5xl font-extrabold mb-4 uppercase tracking-wider">DAVID CHEN</h3>
+              <div class="bg-yellow-400 text-black px-6 py-2 mb-8">
+                <span class="text-sm font-bold uppercase">E-COMMERCE OWNER</span>
+              </div>
+              
+              <!-- Testimonial text -->
+              <p class="text-center leading-relaxed text-lg">
+                "After struggling with three different marketing agencies that couldn't deliver results for my e-commerce store, I decided to take matters into my own hands with Jake's course. The ROI strategies he teaches helped me optimize our ad spend and increase conversions by 28%. The best part is now I understand exactly what works and why, rather than blindly trusting agencies."
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Drag Indicator / Rainbow Bar -->
+        <div class="mt-10 relative w-full max-w-4xl mx-auto">
+          <!-- Full width background track -->
+          <div class="w-full bg-gray-300 rounded-full" style="height: 6px;"></div>
+          
+          <!-- Rainbow progress bar -->
+          <div class="rainbow-slider absolute top-0 left-0 rounded-full cursor-grab" id="testimonialProgress" style="height: 6px; width: 16.67%;">
+            <div class="h-full w-full bg-gradient-to-r from-green-400 via-yellow-400 to-pink-500 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+  <!-- Standard Non-Pinned Panel with Extreme Z-Index -->
+  <section id="non-pinned-panel2" class="panel relative w-full py-20 bg-white"
+    style="z-index: 999; position: relative;">
+    <div class="container mx-auto px-4 md:px-8">
+      <!-- Section Heading -->
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="heading-text text-3xl sm:text-4xl md:text-5xl text-black mb-6">
+          STANDARD SCROLLING SECTION
+        </h2>
+        <div class="yellow-highlight mb-8">
+          <h3 class="heading-text text-2xl sm:text-3xl md:text-4xl text-black">
+            NO PINNING EFFECT HERE
+          </h3>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <!-- Left Column -->
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl md:text-2xl font-bold mb-4">Feature One</h3>
+          <p class="text-gray-800 mb-4">
+            This panel uses standard scrolling behavior without the pin effect that's applied to other sections.
+            It allows content to flow naturally as the user scrolls through the page.
+          </p>
+          <div class="w-full h-64 bg-gray-200 rounded-md flex items-center justify-center">
+            <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/MarketingMagic_Icons-02-1.png" alt="Feature Image" class="h-48 w-auto">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl md:text-2xl font-bold mb-4">Feature Two</h3>
+          <p class="text-gray-800 mb-4">
+            Unlike the other sections that use GSAP ScrollTrigger to create fixed panels that occupy the
+            full viewport, this section behaves like a traditional webpage section.
+          </p>
+          <div class="w-full h-64 bg-gray-200 rounded-md flex items-center justify-center">
+            <img src="https://jacoba27.sg-host.com/wp-content/uploads/2025/04/MarketingMagic_Icons-03-1.png" alt="Feature Image" class="h-48 w-auto">
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="mt-16 text-center">
+        <a href="#"
+          class="bg-yellow-400 text-black px-6 py-3 inline-flex items-center text-base font-bold transition-all hover:bg-yellow-500 transform hover:scale-105 rounded-sm">
+          LEARN MORE
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Arrow up button for scrolling back to top -->
+  <div class="arrow-up" id="back-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </div>
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+            // Register GSAP plugins
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+            
+            // Force video loading and playback
+            document.querySelectorAll('video').forEach(function(video) {
+                video.load();
+                video.play();
+                
+                // Some browsers need a timeout to properly start the video
+                setTimeout(function() {
+                    if (video.paused) {
+                        video.play();
+                    }
+                }, 500);
+            });
+        
+            // Create a master timeline for smooth scrolling between panels
+            let panels = gsap.utils.toArray(".panel");
+            
+            // Pin each panel with scrubbing effect instead of auto-snapping
+            panels.forEach((panel, i) => {
+                // Create individual scroll triggers for each panel
+                ScrollTrigger.create({
+                    trigger: panel,
+                    start: "top top",
+                    end: "=+300%",
+                    pin: true,
+                    pinSpacing: false, // Changed from false to true to ensure proper spacing
+                    scrub: 1, // Add smooth scrubbing effect - adjust value between 0.1-5 for different smoothness
+                    anticipatePin: 1, // Helps with smoother pinning transitions
+                    id: "panel-" + i // Add ID for debugging
+                });
+            });
+
+            // Back to top button
+            document.getElementById('back-to-top').addEventListener('click', function() {
+                gsap.to(window, {
+                    duration: 1,
+                    scrollTo: {
+                        y: 0,
+                        offsetY: 0
+                    },
+                    ease: "power2.inOut"
+                });
+            });
+            
+            // Show back to top button after first section
+            ScrollTrigger.create({
+                trigger: "#hero-panel",
+                start: "bottom top",
+                onEnter: () => document.getElementById('back-to-top').classList.add('visible'),
+                onLeaveBack: () => document.getElementById('back-to-top').classList.remove('visible')
+            });
+            
+            // Handle next section arrow click
+            document.getElementById('next-section-arrow').addEventListener('click', function() {
+                let nextPanel = document.getElementById('combined-circle-panel');
+                gsap.to(window, {
+                    duration: 1,
+                    scrollTo: {
+                        y: nextPanel,
+                        offsetY: 0
+                    },
+                    ease: "power2.inOut"
+                });
+            });
+            
+            
+
+
+
+
+        // For the black panel - Create a single timeline that handles both the background expansion and content reveal
+        let blackPanelTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#combined-circle-panel",
+                start: "top top", // Start when panel reaches center of viewport
+                end: "bottom bottom", // End when panel reaches bottom of viewport
+                scrub: 1,          // Smooth scrubbing with 1 second lag
+                markers: false
+            }
+        });
+
+        // Animate the elements in sequence
+        blackPanelTimeline
+            // First change the background - expanding the black circle/background
+            .to("#expanding-black-bg", {
+                height: "100%", 
+                bottom: 0, 
+                borderRadius: 0,
+                duration: 0.3  // Make this happen over a shorter period
+            })
+            // Add substantial pause between background expansion and content reveal
+            // Position parameter "+=0.5" creates a delay of 0.5 units after previous animation
+            .fromTo("#scroll-content", 
+                { y: "100%", opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.2, ease: "power2.out" }
+            )
+            // Keep content visible with a final pause
+            .to({}, { duration: 0.2 }); // Final hold state
+
+        // Similarly for the gray panel
+        let grayPanelTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#gray-circle-panel",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,  // Smooth scrubbing with 1 second lag
+                markers: false
+            }
+        });
+
+        // Use the same approach as the black panel timeline
+        grayPanelTimeline
+            // First animate the expanding background
+            .to("#expanding-gray-bg", {
+                height: "100%", 
+                bottom: 0, 
+                borderRadius: 0,
+                duration: 0.3
+            })
+            // Then animate the scroll content with a delay after background expansion
+            .fromTo("#gray-scroll-content", 
+                { y: "100%", opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.2, ease: "power2.out" },
+                "+=0.5"  // Add significant delay after background expansion
+            )
+            // Add a pause to keep this content visible as well
+            .to({}, { duration: 0.2 });
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.clear();
+
+gsap.defaults({overwrite: 'auto'});
+
+gsap.set(".left-content > *", {xPercent: -50, yPercent: -50});
+
+// Set up our scroll trigger
+const ST = ScrollTrigger.create({
+  trigger: ".content-container",
+  start: "top top",
+  end: "=+200%",
+  onUpdate: getCurrentSection,
+  pin: ".left-content"
+});
+
+const contentMarkers = gsap.utils.toArray(".contentMarker");
+
+// Set up our content behaviors
+contentMarkers.forEach(marker => {
+  marker.content = document.querySelector(`#${marker.dataset.markerContent}`);
+  
+  if(marker.content.tagName === "IMG") {
+    gsap.set(marker.content, {transformOrigin: "center"});
+    
+    marker.content.enter = function() {
+      gsap.fromTo(marker.content, {autoAlpha: 0, rotateY: -30}, {duration: 0.3, autoAlpha: 1, rotateY: 0});
+    }
+  } else if(marker.content.tagName === "BLOCKQUOTE") {
+    gsap.set(marker.content, {transformOrigin: "left center"});
+    
+    marker.content.enter = function() {
+      gsap.fromTo(marker.content, {autoAlpha: 0, rotateY: 50}, {duration: 0.3, autoAlpha: 1, rotateY: 0});
+    }
+  }
+  
+  marker.content.leave = function() {
+    gsap.to(marker.content, {duration: 0.1, autoAlpha: 0});
+  }
+  
+});
+
+// Handle the updated position
+let lastContent;
+function getCurrentSection() {
+  let newContent;
+  const currScroll = scrollY;
+  
+  // Find the current section
+  contentMarkers.forEach(marker => {
+    if(currScroll > marker.offsetTop) {
+      newContent = marker.content;
+    }
+  });
+  
+  // If the current section is different than that last, animate in
+  if(newContent
+  && (lastContent == null 
+     || !newContent.isSameNode(lastContent))) {
+    // Fade out last section
+    if(lastContent) {
+      lastContent.leave();
+    }
+    
+    // Animate in new section
+    newContent.enter();
+    
+    lastContent = newContent;
+  }
+  
+}
+
+const media = window.matchMedia("screen and (max-width: 600px)");
+ScrollTrigger.addEventListener("refreshInit", checkSTState);
+checkSTState();
+
+function checkSTState() {
+  if(media.matches) {
+    ST.disable();
+  } else {
+    ST.enable();
+  }
+}
+
+
+
+
+
+
+
+
+
+            
+            function updateActiveDot(index) {
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                document.querySelector('.dot-' + index).classList.add('active');
+            }
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('active');
+        });
+        
+        document.getElementById('close-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.remove('active');
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+        window.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const slider = document.getElementById('testimonialSlider');
+    const progressBar = document.getElementById('testimonialProgress');
+    
+    if (!slider || !progressBar) {
+      console.error('Testimonial slider elements not found');
+      return;
+    }
+    
+    // Set up variables
+    let isDragging = false;
+    let startPosition = 0;
+    let currentIndex = 1; // Start at index 1 (Blake)
+    const slideCount = slider.children.length;
+    
+    // Initialize slider on load to show Blake, Anna, and Michael
+    function initializeSlider() {
+      if (window.innerWidth >= 768) {
+        // On desktop, position to show Blake (partially), Anna, and Michael (partially)
+        setIndexWithOffset(1, 0.15); // Offset to show part of Blake on left
+      } else {
+        // On mobile, just center on Anna Rich
+        currentIndex = 2;
+        setSliderPosition();
+        updateProgressBar();
+      }
+    }
+    
+    // Helper function to set index with offset for precise positioning
+    function setIndexWithOffset(baseIndex, offset) {
+      currentIndex = baseIndex - offset;
+      setSliderPosition();
+      updateProgressBar();
+    }
+    
+    // Call initialization
+    initializeSlider();
+    
+    // Set up drag events for the progress bar
+    progressBar.addEventListener('mousedown', dragStart);
+    progressBar.addEventListener('touchstart', dragStart);
+    
+    window.addEventListener('mouseup', dragEnd);
+    window.addEventListener('touchend', dragEnd);
+    
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('touchmove', drag);
+    
+    // Handle start of drag
+    function dragStart(e) {
+      if (e.type === 'touchstart') {
+        startPosition = e.touches[0].clientX;
+      } else {
+        startPosition = e.clientX;
+        e.preventDefault();
+      }
+      
+      isDragging = true;
+      progressBar.style.cursor = 'grabbing';
+    }
+    
+    // Handle during drag
+    function drag(e) {
+      if (!isDragging) return;
+      
+      let currentPosition;
+      if (e.type === 'touchmove') {
+        currentPosition = e.touches[0].clientX;
+        e.preventDefault(); // Prevent scrolling on touch devices
+      } else {
+        currentPosition = e.clientX;
+      }
+      
+      const trackRect = progressBar.parentElement.getBoundingClientRect();
+      const trackWidth = trackRect.width;
+      
+      // Calculate new position relative to track
+      let movement = currentPosition - startPosition;
+      
+      // Calculate what percentage of the track width was moved
+      let movementPercent = movement / trackWidth * 100;
+      
+      // Convert movement to index movement (how many slides to move)
+      const maxVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
+      const maxNavigableIndex = slideCount - maxVisibleSlides;
+      const indexMovement = movementPercent / 100 * maxNavigableIndex;
+      
+      // Update current index based on movement
+      let newIndex = currentIndex - indexMovement;
+      
+      // Constrain index to valid range with room for partially visible slides
+      newIndex = Math.max(-0.15, Math.min(newIndex, maxNavigableIndex + 0.15));
+      
+      // Update current index
+      currentIndex = newIndex;
+      
+      // Update positions
+      setSliderPosition();
+      updateProgressBar();
+      
+      // Remember new start position for next movement
+      startPosition = currentPosition;
+    }
+    
+    // Handle end of drag
+    // Handle end of drag
+function dragEnd() {
+  if (!isDragging) return;
+  isDragging = false;
+  progressBar.style.cursor = 'grab';
+  
+  // Get the whole number index close to current position
+  let baseIndex = Math.round(currentIndex);
+  
+  // Modified end positions handling to allow viewing the far left testimonial
+  if (baseIndex < 0) {
+    // Allow showing first slide fully
+    currentIndex = 0;
+  } else if (baseIndex >= slideCount - (window.innerWidth >= 768 ? 3 : 1)) {
+    // At end - show the last slides without partial visibility
+    currentIndex = slideCount - (window.innerWidth >= 768 ? 3 : 1);
+  } else {
+    // Standard position - keep the current index
+    currentIndex = baseIndex;
+  }
+  
+  // Update positions
+  setSliderPosition();
+  updateProgressBar();
+}
+
+    
+    // Set slider position based on current index
+    function setSliderPosition() {
+      let slideWidth;
+      if (window.innerWidth >= 768) {
+        slideWidth = 33.333; // Desktop: 3 slides visible
+      } else {
+        slideWidth = 100; // Mobile: 1 slide visible
+      }
+      
+      // Calculate slide position based on current index
+      const slidePosition = -(currentIndex * slideWidth);
+      slider.style.transform = `translateX(${slidePosition}%)`;
+    }
+    
+    // Update progress bar position based on current index
+    function updateProgressBar() {
+      const maxVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
+      const maxNavigableIndex = slideCount - maxVisibleSlides;
+      
+      // Calculate progress position (as percentage)
+      const progressPercentage = (currentIndex / maxNavigableIndex) * (100 - (100 / slideCount));
+      
+      // Update progress bar position
+      progressBar.style.left = `${Math.max(0, Math.min(progressPercentage, 100 - (100 / slideCount)))}%`;
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      // Reinitialize on resize to ensure proper positioning
+      initializeSlider();
+    });
+  });
+
+
+  </script>
+
+</body>
+
+</html>
