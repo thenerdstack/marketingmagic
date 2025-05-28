@@ -510,6 +510,73 @@
     }
 
 
+    
+
+
+
+
+
+    /* Add this to your existing CSS to fix the gray circle panel that's off-page */
+#gray-circle-panel .content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Use full width */
+  padding: 0 5%; /* Add percentage padding instead */
+  box-sizing: border-box;
+  transform: translateY(0); /* Reset any transforms */
+}
+
+/* Fix grid positioning */
+#gray-circle-panel .grid {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Adjust top text block */
+#gray-circle-panel .grid .col-span-2.row-span-1.text-left {
+  padding-left: 3%;
+  padding-right: 5%;
+  width: 100%;
+}
+
+/* Adjust bottom text block */
+#gray-circle-panel .grid .col-span-2.row-span-1.text-right {
+  padding-right: 3%;
+  padding-left: 5%;
+  width: 100%;
+}
+
+/* Make sure text doesn't overflow */
+#gray-circle-panel .text-2xl,
+#gray-circle-panel .text-3xl,
+#gray-circle-panel .text-4xl {
+  font-size: clamp(1.25rem, 2vw, 2.25rem);
+  line-height: 1.3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  #gray-circle-panel .grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
+  
+  #gray-circle-panel .col-span-2,
+  #gray-circle-panel .col-span-1 {
+    grid-column: 1 / -1; /* Span all columns */
+  }
+  
+  #gray-circle-panel .grid .col-span-2.row-span-1.text-left,
+  #gray-circle-panel .grid .col-span-2.row-span-1.text-right {
+    padding: 0 5%;
+    text-align: center; /* Center text on mobile */
+  }
+}
+
 
 
 
@@ -1367,7 +1434,7 @@
 
 
   <!-- Gray Circle Panel -->
-  <section id="gray-circle-panel" class="panel gray-circle-panel">
+  <section id="gray-circle-panel" class="panel gray-circle-panel" style="height: 1000vh;">
     <div class="panel-content relative w-full h-screen overflow-hidden flex items-center justify-center">
       <!-- Add the expanding gray background element -->
       <div class="expanding-gray-bg" id="expanding-gray-bg"></div>
@@ -1392,9 +1459,9 @@
               <!-- Top Statement (Top-Left) - Spans 2 columns -->
               <div class="col-span-2 row-span-1 text-left self-start mt-16">
                 <p class="text-white text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                  I HELP <span class="text-yellow-400">SMALL BUSINESS OWNERS, FIRST TIME ENTREPRENEURS</span><br>
-                                AND <span class="text-yellow-400">MARKETING DIRECTORS</span> FEEL EMPOWERED AND<br>
-                                KNOWLEDGEABLE TO DIRECT AND EXECUTE THEIR MARKETING<br>
+                  I HELP <span class="text-yellow-400">SMALL BUSINESS OWNERS, FIRST TIME ENTREPRENEURS</span>
+                                AND <span class="text-yellow-400">MARKETING DIRECTORS</span> FEEL EMPOWERED AND
+                                KNOWLEDGEABLE TO DIRECT AND EXECUTE THEIR MARKETING
                                 STRATEGY AND <span class="text-yellow-400">SEE REAL TIME RESULTS.</span>
                 </p>
               </div>
@@ -1416,8 +1483,8 @@
               <div class="col-span-1 row-span-1"></div> <!-- Left empty -->
               <div class="col-span-2 row-span-1 text-right self-end mb-16">
                 <p class="text-white text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                  AT THE END OF THIS COURSE <span class="text-yellow-400">MY STUDENTS WILL FEEL CONFIDENT,<br>
-                                EQUIPPED AND EMPOWERED TO TAKE BACK THEIR MARKETING</span> AND<br>
+                  AT THE END OF THIS COURSE <span class="text-yellow-400">MY STUDENTS WILL FEEL CONFIDENT,
+                                EQUIPPED AND EMPOWERED TO TAKE BACK THEIR MARKETING</span> AND
                                 BUILD, EXECUTE, OR DIRECT THEIR OWN STRATEGY.
                 </p>
               </div>
@@ -1787,9 +1854,84 @@
   </div>
 </section>
 
-
-
-
+<!-- Join the Marketing Magic Movement Section -->
+<section id="movement-panel" class="relative w-full py-20 bg-black text-white" style="z-index: 9; position: relative;">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Main Heading with Angled Yellow Bar -->
+    <div class="relative max-w-6xl mx-auto mb-24">
+      <!-- Small decorative elements -->
+      <div class="absolute -top-12 left-0">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="absolute -top-4 left-16">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 0L7 15L20 17L7 19L5 30L3 19L0 17L3 15L5 0Z" fill="white" opacity="0.7"/>
+        </svg>
+      </div>
+      
+      <!-- Main Title -->
+      <h2 class="heading-text text-7xl md:text-8xl lg:text-9xl text-white mb-4 relative z-10">
+        JOIN THE
+      </h2>
+      
+      <!-- Yellow Bar with Marketing Magic Text -->
+      <div class="relative transform -rotate-6 bg-yellow-400 py-4 px-6 inline-block mt-2 mb-6 z-10 max-w-5xl">
+        <h2 class="heading-text text-6xl md:text-7xl lg:text-8xl text-black transform rotate-0">
+          MARKETING MAGIC
+        </h2>
+      </div>
+      
+      <!-- Movement Text with Underline - Now right-aligned -->
+      <div class="relative z-10 flex justify-end">
+        <div class="text-right">
+          <h2 class="heading-text text-7xl md:text-8xl lg:text-9xl text-white">
+            MOVEMENT
+          </h2>
+          <div class="h-4 bg-white mt-2 ml-auto" style="width: 70%;"></div>
+        </div>
+      </div>
+      
+      <!-- Small decorative element bottom right -->
+      <div class="absolute bottom-0 right-0">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 40L28 32L20 30L28 28L30 20L32 28L40 30L32 32L30 40Z" fill="white"/>
+        </svg>
+      </div>
+      
+      <!-- Add star decoration near MOVEMENT text -->
+      <div class="absolute top-1/2 right-0 transform translate-x-16">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 0L30 20L50 25L30 30L25 50L20 30L0 25L20 20L25 0Z" fill="white" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Logo Row -->
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 mt-20">
+      <!-- Logo 1: Imagine Dragons -->
+      <div class="w-36 md:w-48 grayscale opacity-70 hover:opacity-100 transition-opacity">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Imagine_Dragons_logo.svg" alt="Imagine Dragons" class="w-full">
+      </div>
+      
+      <!-- Logo 2: Young Living -->
+      <div class="w-36 md:w-48 grayscale opacity-70 hover:opacity-100 transition-opacity">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Young_Living_logo.svg" alt="Young Living Essential Oils" class="w-full">
+      </div>
+      
+      <!-- Logo 3: Bosch -->
+      <div class="w-36 md:w-48 grayscale opacity-70 hover:opacity-100 transition-opacity">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Bosch-logo.svg" alt="Bosch" class="w-full">
+      </div>
+      
+      <!-- Logo 4: The Piano Guys -->
+      <div class="w-36 md:w-48 grayscale opacity-70 hover:opacity-100 transition-opacity">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/38/The_Piano_Guys_logo.png" alt="The Piano Guys" class="w-full">
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -2078,173 +2220,6 @@ function checkSTState() {
 
 
 
-
-
-        window.addEventListener('DOMContentLoaded', function() {
-    // Get elements
-    const slider = document.getElementById('testimonialSlider');
-    const progressBar = document.getElementById('testimonialProgress');
-    
-    if (!slider || !progressBar) {
-      console.error('Testimonial slider elements not found');
-      return;
-    }
-    
-    // Set up variables
-    let isDragging = false;
-    let startPosition = 0;
-    let currentIndex = 1; // Start at index 1 (Blake)
-    const slideCount = slider.children.length;
-    
-    // Initialize slider on load to show Blake, Anna, and Michael
-    function initializeSlider() {
-      if (window.innerWidth >= 768) {
-        // On desktop, position to show Blake (partially), Anna, and Michael (partially)
-        setIndexWithOffset(1, 0.15); // Offset to show part of Blake on left
-      } else {
-        // On mobile, just center on Anna Rich
-        currentIndex = 2;
-        setSliderPosition();
-        updateProgressBar();
-      }
-    }
-    
-    // Helper function to set index with offset for precise positioning
-    function setIndexWithOffset(baseIndex, offset) {
-      currentIndex = baseIndex - offset;
-      setSliderPosition();
-      updateProgressBar();
-    }
-    
-    // Call initialization
-    initializeSlider();
-    
-    // Set up drag events for the progress bar
-    progressBar.addEventListener('mousedown', dragStart);
-    progressBar.addEventListener('touchstart', dragStart);
-    
-    window.addEventListener('mouseup', dragEnd);
-    window.addEventListener('touchend', dragEnd);
-    
-    window.addEventListener('mousemove', drag);
-    window.addEventListener('touchmove', drag);
-    
-    // Handle start of drag
-    function dragStart(e) {
-      if (e.type === 'touchstart') {
-        startPosition = e.touches[0].clientX;
-      } else {
-        startPosition = e.clientX;
-        e.preventDefault();
-      }
-      
-      isDragging = true;
-      progressBar.style.cursor = 'grabbing';
-    }
-    
-    // Handle during drag
-    function drag(e) {
-      if (!isDragging) return;
-      
-      let currentPosition;
-      if (e.type === 'touchmove') {
-        currentPosition = e.touches[0].clientX;
-        e.preventDefault(); // Prevent scrolling on touch devices
-      } else {
-        currentPosition = e.clientX;
-      }
-      
-      const trackRect = progressBar.parentElement.getBoundingClientRect();
-      const trackWidth = trackRect.width;
-      
-      // Calculate new position relative to track
-      let movement = currentPosition - startPosition;
-      
-      // Calculate what percentage of the track width was moved
-      let movementPercent = movement / trackWidth * 100;
-      
-      // Convert movement to index movement (how many slides to move)
-      const maxVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
-      const maxNavigableIndex = slideCount - maxVisibleSlides;
-      const indexMovement = movementPercent / 100 * maxNavigableIndex;
-      
-      // Update current index based on movement
-      let newIndex = currentIndex - indexMovement;
-      
-      // Constrain index to valid range with room for partially visible slides
-      newIndex = Math.max(-0.15, Math.min(newIndex, maxNavigableIndex + 0.15));
-      
-      // Update current index
-      currentIndex = newIndex;
-      
-      // Update positions
-      setSliderPosition();
-      updateProgressBar();
-      
-      // Remember new start position for next movement
-      startPosition = currentPosition;
-    }
-    
-    // Handle end of drag
-    // Handle end of drag
-function dragEnd() {
-  if (!isDragging) return;
-  isDragging = false;
-  progressBar.style.cursor = 'grab';
-  
-  // Get the whole number index close to current position
-  let baseIndex = Math.round(currentIndex);
-  
-  // Modified end positions handling to allow viewing the far left testimonial
-  if (baseIndex < 0) {
-    // Allow showing first slide fully
-    currentIndex = 0;
-  } else if (baseIndex >= slideCount - (window.innerWidth >= 768 ? 3 : 1)) {
-    // At end - show the last slides without partial visibility
-    currentIndex = slideCount - (window.innerWidth >= 768 ? 3 : 1);
-  } else {
-    // Standard position - keep the current index
-    currentIndex = baseIndex;
-  }
-  
-  // Update positions
-  setSliderPosition();
-  updateProgressBar();
-}
-
-    
-    // Set slider position based on current index
-    function setSliderPosition() {
-      let slideWidth;
-      if (window.innerWidth >= 768) {
-        slideWidth = 33.333; // Desktop: 3 slides visible
-      } else {
-        slideWidth = 100; // Mobile: 1 slide visible
-      }
-      
-      // Calculate slide position based on current index
-      const slidePosition = -(currentIndex * slideWidth);
-      slider.style.transform = `translateX(${slidePosition}%)`;
-    }
-    
-    // Update progress bar position based on current index
-    function updateProgressBar() {
-      const maxVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
-      const maxNavigableIndex = slideCount - maxVisibleSlides;
-      
-      // Calculate progress position (as percentage)
-      const progressPercentage = (currentIndex / maxNavigableIndex) * (100 - (100 / slideCount));
-      
-      // Update progress bar position
-      progressBar.style.left = `${Math.max(0, Math.min(progressPercentage, 100 - (100 / slideCount)))}%`;
-    }
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      // Reinitialize on resize to ensure proper positioning
-      initializeSlider();
-    });
-  });
 
 
   </script>
