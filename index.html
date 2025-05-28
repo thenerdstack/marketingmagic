@@ -1160,6 +1160,81 @@
 
 
 
+/* Mobile-specific adjustments for the gray section grid */
+@media (max-width: 768px) {
+  /* Change grid to a single column on mobile */
+  #gray-circle-panel .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1rem;
+  }
+  
+  /* Hide empty grid cells on mobile */
+  #gray-circle-panel .col-span-1.row-span-1:empty {
+    display: none;
+  }
+  
+  /* Make sure both text blocks take full width */
+  #gray-circle-panel .col-span-2.row-span-1 {
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  /* Center both text blocks */
+  #gray-circle-panel .col-span-2.row-span-1.text-left,
+  #gray-circle-panel .col-span-2.row-span-1.text-right {
+    text-align: center;
+  }
+  
+  /* Adjust the arrow position and size on mobile */
+  #gray-circle-panel .col-span-1.row-span-1:not(:empty) {
+    grid-column: 1 / -1;
+    padding: 1rem 0;
+  }
+  
+  /* Resize text to fit mobile screens better */
+  #gray-circle-panel .text-2xl,
+  #gray-circle-panel .text-3xl,
+  #gray-circle-panel .text-4xl {
+    font-size: clamp(1.125rem, 5vw, 1.75rem);
+    line-height: 1.4;
+  }
+  
+  /* Improve spacing between sections */
+  #gray-circle-panel .self-start {
+    margin-top: 2rem;
+  }
+  
+  #gray-circle-panel .self-end {
+    margin-bottom: 2rem;
+  }
+}
+
+
+
+
+/* Add this to your existing style section */
+#slide-up-panel .panel-content {
+  background-color: #F2C94C; /* Keep the yellow color as a fallback */
+  background-image: url('grain (10) 4.png'); /* Add the grain texture */
+  background-blend-mode: multiply; /* This blends the texture with the background color */
+  position: relative;
+}
+
+/* Adjust the overlay to work with the new background */
+#slide-up-panel .panel-content .absolute.inset-0 {
+  background-color: transparent; /* Remove the yellow overlay */
+}
+
+/* Make sure text is still visible over the textured background */
+#slide-up-panel .heading-text,
+#slide-up-panel p {
+  position: relative;
+  z-index: 10;
+}
+
 
 
 
@@ -1446,7 +1521,7 @@
           <img
                     src="Rabbit2 1.png"
                     alt="Marketing Magic - Additional Features"
-                    class="w-4/5 md:w-3/4 lg:w-2/3 max-w-[800px] h-auto"
+                    class="w-4/5 md:w-3/4 lg:w-2/3 max-w-[600px] h-auto"
                 >
         </div>
         <!-- Modify the gray-scroll-content section to improve the positioning -->
