@@ -869,6 +869,7 @@
     height: auto;
     min-height: 300px;
     margin-bottom: 3rem;
+    display: block !important;
   }
   
   .left-content > * {
@@ -878,6 +879,13 @@
     transform: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    display: block !important;
+  }
+  
+  .left-content blockquote {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   .feature-card {
@@ -913,6 +921,17 @@
     width: 2.5rem !important;
     height: 2.5rem !important;
   }
+  
+  .left-content blockquote {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .left-content h1 {
+    font-size: 1.5rem !important;
+    display: block !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -941,6 +960,29 @@
   .x-mark-image {
     width: 2rem !important;
     height: 2rem !important;
+  }
+  
+  .left-content {
+    display: block !important;
+    min-height: auto;
+  }
+  
+  .left-content blockquote {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .left-content h1 {
+    font-size: 1.25rem !important;
+    display: block !important;
+    line-height: 1.3;
+  }
+  
+  .textToShow {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
@@ -1057,106 +1099,6 @@
 
 
 
-/* Testimonial slider styling - UPDATED */
-.testimonial-slider-container {
-    /* margin: 0 -10%; */
-    width: 120%;
-    overflow: visible;
-    position: relative;
-  }
-  
-  .testimonial-slider {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .testimonial-slide {
-    flex: 0 0 auto;
-    padding: 1rem;
-    width: 100%;
-    position: relative;
-    margin-top: 60px; /* Add space for avatar */
-  }
-  
-  @media (min-width: 768px) {
-    .testimonial-slide {
-      width: 600px; /* Exactly 3 slides visible on desktop */
-    }
-  }
-  
-  .testimonial-card {
-    border-radius: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 2.5rem 1.5rem !important;
-    padding-top: 4rem !important;
-    background-color: #222 !important;
-    position: relative;
-  }
-  
-  /* Name styling */
-  .testimonial-card h3 {
-    font-size: 2.75rem;
-    letter-spacing: 0.05em;
-    font-weight: 900;
-  }
-  
-  /* Title badge */
-  .testimonial-card .bg-yellow-400 {
-    display: inline-block;
-    transform: translateY(-5px);
-  }
-  
-  /* Rainbow progress bar for dragging */
-  .rainbow-slider {
-    cursor: grab;
-    transition: left 0.3s ease;
-  }
-  
-  .rainbow-slider:active {
-    cursor: grabbing;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .testimonial-slider-container {
-      margin: 0;
-      width: 100%;
-    }
-    
-    .testimonial-card h3 {
-      font-size: 2rem;
-    }
-  }
-  
-  /* Make sure the avatar is properly circular */
-  .avatar-circle {
-    position: relative;
-    z-index: 1;
-    width: 120px;
-    height: 120px;
-  }
-  
-  /* Position decorative elements */
-  .avatar-container {
-    position: relative;
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem !important;
-    z-index: 2;
-  }
-  
-  /* Improve text formatting */
-  .testimonial-card p {
-    line-height: 1.7;
-    font-size: 1.125rem;
-    margin-top: 0.5rem;
-  }
-
-
 
 
 
@@ -1235,6 +1177,24 @@
   z-index: 10;
 }
 
+
+
+
+
+/* Rainbow gradient slider */
+.rainbow-slider {
+      height: 4px;
+      background: linear-gradient(90deg, #8A2387, #E94057, #F27121, #FFAA00, #BABD42, #6FCF97, #66D9E8, #8A2387);
+      background-size: 800% 100%;
+      animation: rainbowAnimation 10s linear infinite;
+      margin: 0 auto;
+      max-width: 80%;
+    }
+
+    @keyframes rainbowAnimation {
+      0% { background-position: 0% 50% }
+      100% { background-position: 100% 50% }
+    }
 
 
 
@@ -1749,6 +1709,98 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+   <!-- Testimonial Section -->
+   <section class=" py-16 bg-white" style="z-index: 9; position: relative; padding: 100px 0 100px 0;">
+    <div class="w-full px-4">
+      <!-- Testimonial Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto">
+        <!-- Testimonial 1 -->
+        <div class="bg-black rounded-lg p-8 relative" style="background: linear-gradient(to bottom, black, gray);">
+          <div class="flex justify-center">
+            <div class="relative" style="margin-top: -60px;">
+              <img src="Group 19.png" alt="Hailey Watson" class="w-24 h-24 rounded-full object-cover border-4 border-white">
+              <div class="absolute -top-2 -left-2">
+                <img src="Layer_1-1.png" alt="Star" class="w-6 h-6">
+              </div>
+              <div class="absolute -bottom-1 -right-1">
+                <img src="Layer_1-1.png" alt="Star" class="w-6 h-6">
+              </div>
+            </div>
+          </div>
+          <h3 class="text-white text-center text-2xl font-bold mb-2">HAILEY WATSON</h3>
+          <div class="flex justify-center mb-4">
+            <div class="bg-yellow-400 px-4 py-1 rounded">
+              <p class="text-black font-bold text-sm">ENTREPRENEUR</p>
+            </div>
+          </div>
+          <p class="text-white text-center" style="font-size: 1.3em;">
+            "Jake launched our small business in such big ways. He answered all of our endless questions and gave us step by step instructions on how to achieve our goals. Finding clients, improving our skills, and networking is so easy though him. Really lucky to have him our court!!"
+          </p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-black rounded-lg p-8 relative" style="background: linear-gradient(to bottom, black, gray);">
+          <div class="flex justify-center">
+            <div class="relative" style="margin-top: -60px;">
+              <img src="Group 19.png" alt="Blake Weekley" class="w-24 h-24 rounded-full object-cover border-4 border-white">
+              <div class="absolute -bottom-1 -right-1">
+                <img src="Brush_Scribble_Elements-1.png" alt="Scribble" class="w-12 h-12">
+              </div>
+            </div>
+          </div>
+          <h3 class="text-white text-center text-2xl font-bold mb-2">BLAKE WEEKLEY</h3>
+          <div class="flex justify-center mb-4">
+            <div class="bg-yellow-400 px-4 py-1 rounded">
+              <p class="text-black font-bold text-sm">SMALL BUSINESS OWNER</p>
+            </div>
+          </div>
+          <p class="text-white text-center" style="font-size: 1.3em;">
+            "Jake's marketing course exceeded my expectations! His approach and clear explanations helped my team kick start our business! Thanks to Jake, I've gained valuable skills that have already made a significant impact on my marketing strategies. Highly recommend this course to anyone looking to level up their marketing game!"
+          </p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-black rounded-lg p-8 relative" style="background: linear-gradient(to bottom, black, gray);">
+          <div class="flex justify-center">
+            <div class="relative" style="margin-top: -60px;">
+              <img src="Group 19.png" alt="Anna Rich" class="w-24 h-24 rounded-full object-cover border-4 border-white">
+              <div class="absolute -top-2 -right-1">
+                <img src="Layer_1-8.png" alt="Flower" class="w-8 h-8">
+              </div>
+              <div class="absolute -bottom-1 -left-1">
+                <img src="Layer_1-8.png" alt="Flower" class="w-8 h-8">
+              </div>
+            </div>
+          </div>
+          <h3 class="text-white text-center text-2xl font-bold mb-2">ANNA RICH</h3>
+          <div class="flex justify-center mb-4">
+            <div class="bg-yellow-400 px-4 py-1 rounded">
+              <p class="text-black font-bold text-sm">SMALL BUSINESS OWNER</p>
+            </div>
+          </div>
+          <p class="text-white text-center" style="font-size: 1.3em;">
+            "As owners of a local glazed nut company, we found social media and digital marketing challenging despite our marketing educational backgrounds. Jacob created this marketing course, which provided the exact guidance we needed to grow our marketing efforts dramatically. This was the most beneficial marketing lesson - refreshingly concise. Highly recommend!"
+          </p>
+        </div>
+      </div>
+
+      <!-- Rainbow Slider (Full Width) -->
+      <div class="mt-12">
+        <div class="rainbow-slider w-full rounded-full"></div>
+      </div>
+    </div>
+  </section>
+
+
+
+
 <!-- Join the Marketing Magic Movement Section -->
 <section id="movement-panel" class="relative w-full py-20 bg-black text-white" style="z-index: 9; position: relative;">
   <div class="container mx-auto px-4 md:px-8">
@@ -1890,8 +1942,7 @@
 
 
 <!-- Footer Section -->
-<footer class="relative w-full py-16 bg-black text-white" style="z-index: 9; position: relative;">
-  <!-- Rainbow gradient top border -->
+<footer class="relative w-full pt-16 bg-black text-white" style="z-index: 9; position: relative;">  <!-- Rainbow gradient top border -->
   <div class="rainbow-border w-full absolute top-0"></div>
   
   <div class="container mx-auto px-4 md:px-8">
@@ -1977,6 +2028,10 @@
       </div>
     </div>
   </div>
+
+
+
+
   
   <!-- Copyright Section -->
   <div class="mt-16 py-4 bg-gray-900">
